@@ -20,7 +20,17 @@
     
         <link rel="icon" type="image/x-icon" href="logo-svg-01-colored-01-blue final-01.svg">
 
-    
+        <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "_Twfz9hFW2QThsszp",
+      });
+   })();
+</script>
+
       <link rel="stylesheet" href="homepage.css" />
       <link rel="stylesheet" href="mediaquery.css">
       <link rel="stylesheet" href="mediaqueryfor4k.css">
@@ -438,15 +448,42 @@
             <div class="contact-content-divider"></div>
             <div class="contact-content-right">
               <form id="contact-form" action="#" method="post">
-                  <label for="email">Your Email:</label>
-                  <input type="email" id="email" name="email" required>
-                  
-                  <label for="message">Message:</label>
-                  <textarea id="message" name="message" rows="5" required></textarea>
-                  
-                  <button type="submit">Submit</button>
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+                
+                <button type="submit">Submit</button>
               </form>
-          </div>
+            </div>
+            
+            <script type="text/javascript">
+              document.getElementById('contact-form').addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent the default form submission
+            
+                // Collect the form data
+                var email = document.getElementById('email').value;
+                var message = document.getElementById('message').value;
+            
+                // Prepare the EmailJS parameters
+                var templateParams = {
+                  from_email: email,
+                  message: message
+                };
+            
+                // Send the email
+                emailjs.send('service_ahhhzua', 'template_ak4xpua', templateParams)
+                  .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    alert('Message sent successfully!');
+                    document.getElementById('contact-form').reset(); // Clear the form
+                  }, function(error) {
+                    console.error('FAILED...', error);
+                    alert('Failed to send message. Please try again later.');
+                  });
+              });
+            </script>
           
 
           </div>
