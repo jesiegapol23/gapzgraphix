@@ -399,7 +399,7 @@ a[data-tooltip]:hover::after {
 .about-image-section {
   height: 100%;
   width: 40%;
-  background: url("me-abt.png") no-repeat;
+  background: url("abt-hero.png") no-repeat;
   background-position: center;
   background-size: cover;
   border-radius: 12px;
