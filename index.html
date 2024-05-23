@@ -472,58 +472,9 @@
     </main>
 
   
-    <script>// Function to animate skill bars and count percentages
-      function animateSkillBars() {
-        var skillBars = document.querySelectorAll('.skill-bar-container');
-        skillBars.forEach(function(skillBar) {
-          var skill = skillBar.querySelector('.skill');
-          var percentageText = skillBar.querySelector('.percentage');
-          var targetPercentage = parseInt(percentageText.textContent);
-          var counter = 0;
-          var step = 1;
-      
-          var timer = setInterval(function() {
-            if (counter < targetPercentage) {
-              counter += step;
-              percentageText.textContent = counter + '%';
-              skill.style.width = counter + '%';
-            } else {
-              clearInterval(timer);
-            }
-          }, 20); // Adjust the interval for smoother animation
-        });
-      }
-      
-      // Function to load skills when the Skills tab is clicked
-      function loadSkills() {
-        // Your logic to open the Skills tab
-        animateSkillBars();
-      }
-      
-      // Call animateSkillBars() when the page loads
-      window.addEventListener('load', animateSkillBars);
-      
-      // Call loadSkills() when the Skills tab is clicked
-      document.querySelector('.default-active-tab-title').addEventListener('click', loadSkills);
-    
-      // Function to load skills when the About link is clicked
-    function loadSkillsOnAboutClick() {
-      // Check if the About tab is clicked
-      document.getElementById('about-link').addEventListener('click', function() {
-        // Load the skills
-        animateSkillBars();
-      });
-    }
-    
-    function loadSkillsOnAboutClick() {
-        document.getElementById('about-link').addEventListener('click', function() {
-          // Load the skills
-          animateSkillBars();
-        });
-      }
-    
+<script>
 
-      document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
   const tabs = document.querySelectorAll(".nav-links ul li a");
   const tabContents = document.querySelectorAll(".main-section");
   document.querySelector(".main-header .nav-links").style.left = "-100%";
@@ -772,8 +723,78 @@ function viewButton() {
   }
 }
 
-     
-      </script>
-  
+</script>
+<script>function openTab(event, tabName) {
+  var i, tabcontent, tabtitle;
+
+  // Hide all tab contents and remove the 'default-active-tab-title' class from all tab titles
+  tabcontent = document.getElementsByClassName("about-tab-content")[0].children;
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].classList.remove("active-tab-content");
+  }
+
+  // Remove the 'default-active-tab-title' class from all tab titles
+  tabtitle = document.getElementsByClassName("tabtitle");
+  for (i = 0; i < tabtitle.length; i++) {
+    tabtitle[i].classList.remove("default-active-tab-title");
+  }
+
+  // Show the clicked tab content and add the 'default-active-tab-title' class to the clicked tab title
+  document.getElementById(tabName.toLowerCase() + "-tab").classList.add("active-tab-content");
+  event.currentTarget.classList.add("default-active-tab-title");
+}
+</script>
+<script>// Function to animate skill bars and count percentages
+function animateSkillBars() {
+var skillBars = document.querySelectorAll('.skill-bar-container');
+skillBars.forEach(function(skillBar) {
+  var skill = skillBar.querySelector('.skill');
+  var percentageText = skillBar.querySelector('.percentage');
+  var targetPercentage = parseInt(percentageText.textContent);
+  var counter = 0;
+  var step = 1;
+
+  var timer = setInterval(function() {
+    if (counter < targetPercentage) {
+      counter += step;
+      percentageText.textContent = counter + '%';
+      skill.style.width = counter + '%';
+    } else {
+      clearInterval(timer);
+    }
+  }, 20); // Adjust the interval for smoother animation
+});
+}
+
+// Function to load skills when the Skills tab is clicked
+function loadSkills() {
+// Your logic to open the Skills tab
+animateSkillBars();
+}
+
+// Call animateSkillBars() when the page loads
+window.addEventListener('load', animateSkillBars);
+
+// Call loadSkills() when the Skills tab is clicked
+document.querySelector('.default-active-tab-title').addEventListener('click', loadSkills);
+
+// Function to load skills when the About link is clicked
+function loadSkillsOnAboutClick() {
+// Check if the About tab is clicked
+document.getElementById('about-link').addEventListener('click', function() {
+// Load the skills
+animateSkillBars();
+});
+}
+
+function loadSkillsOnAboutClick() {
+document.getElementById('about-link').addEventListener('click', function() {
+  // Load the skills
+  animateSkillBars();
+});
+}
+
+
+</script>
   </body>
 </html>
